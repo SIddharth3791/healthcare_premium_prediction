@@ -1,4 +1,5 @@
 import streamlit as st
+from prediction_helper import predict
 
 st.title("Health Insurance Premium Prediction App")
 
@@ -53,7 +54,7 @@ with row4[2]:
     medical_history = st.selectbox('Medical History', categorical_options['Medical History'])
 
 # Create a dictionary for input values
-input_dict = {
+user_input_dict = {
     'Age': age,
     'Number of Dependants': number_of_dependants,
     'Income in Lakhs': income_lakhs,
@@ -72,4 +73,5 @@ st.markdown("---")
 
 
 if st.button("Predict"):
-    print("Prediction Printed")
+    prediction = predict(user_input_dict)
+    st.success(f"Predicted Premium {prediction}")
